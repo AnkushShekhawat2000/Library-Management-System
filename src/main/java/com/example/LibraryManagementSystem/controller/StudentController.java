@@ -1,5 +1,7 @@
-package com.example.LibraryManagementSystem;
+package com.example.LibraryManagementSystem.controller;
 
+import com.example.LibraryManagementSystem.service.StudentService;
+import com.example.LibraryManagementSystem.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,9 +16,10 @@ public class StudentController {
     StudentService studentService;
 
     @PostMapping("/add")
-    public ResponseEntity addStsudent(@RequestBody Student student)
+    public ResponseEntity addStudent(@RequestBody Student student)
     {
-        Student response = studentService.addStudent(student);
+
+        String response = studentService.addStudent(student);
 
         return new ResponseEntity(response, HttpStatus.CREATED);
     }

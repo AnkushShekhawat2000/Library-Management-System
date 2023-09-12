@@ -1,5 +1,6 @@
-package com.example.LibraryManagementSystem;
+package com.example.LibraryManagementSystem.model;
 
+import com.example.LibraryManagementSystem.Enum.Gender;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -13,16 +14,21 @@ import lombok.experimental.FieldDefaults;
 @Table(name = "student_info")
 public class Student {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int regNo;
 
     @Column(name = "student_name")
     String name;
 
     int age;
-    String email;
 
-    String random;
+    @Column(unique = true, nullable = true)
+    String email;
 
     @Enumerated(EnumType.STRING)
     Gender gender;
+
+    @OneToOne(mappedBy = "student",cascade = CascadeType.ALL)
+    LibraryCard libraryCard;
+
 }

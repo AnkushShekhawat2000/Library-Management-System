@@ -1,4 +1,4 @@
-package com.example.LibraryManagementSystem;
+package com.example.LibraryManagementSystem.Enum;
 
 public enum Gender {
     MALE,
