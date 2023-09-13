@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping("/student")
@@ -36,4 +38,12 @@ public class StudentController {
 
         return new ResponseEntity("Invalid id!!",HttpStatus.BAD_REQUEST);
     }
+
+    @GetMapping("/get-males")
+    public List<String> getAllMales()
+    {
+        List<String> males = studentService.getAllMales();
+        return males;
+    }
+
 }
