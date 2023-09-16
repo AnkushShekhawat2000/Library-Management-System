@@ -1,6 +1,7 @@
 package com.example.LibraryManagementSystem.transformer;
 
 import com.example.LibraryManagementSystem.dto.requestDTO.StudentRequest;
+import com.example.LibraryManagementSystem.dto.responseDTO.LibraryCardResponse;
 import com.example.LibraryManagementSystem.dto.responseDTO.StudentResponse;
 import com.example.LibraryManagementSystem.model.Student;
 
@@ -19,8 +20,18 @@ public class StudentTransformer {
     }
 
 
-//    public static StudentResponse StudentToStudentResponse(Student student)
-//    {
-//
-//    }
+    public static StudentResponse StudentToStudentResponse(Student student)
+    {
+        LibraryCardResponse cardResponse = LibraryCardResponse.builder()
+                .cardNo(student.getLibraryCard().getCardNo())
+                .cardStatus(student.getLibraryCard().getCardStatus())
+                .issueDate(student.getLibraryCard().getIssueDate())
+                .build();
+
+        return StudentResponse.builder()
+              .name(student.getName())
+              .email(student.getEmail())
+             .libraryCardResponse(cardResponse)
+              .build();
+    }
 }

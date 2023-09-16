@@ -15,10 +15,6 @@ public class StudentResponse {
 
     String email;
 
-
-
-    String message;
-
    LibraryCardResponse libraryCardResponse;
 
 

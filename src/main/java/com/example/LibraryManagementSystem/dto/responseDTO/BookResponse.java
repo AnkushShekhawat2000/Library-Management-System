@@ -9,7 +9,8 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @Getter
 @Setter
-public class BookResponseDto {
+@Builder
+public class BookResponse {
     String title;
 
     String noOfPAges;
