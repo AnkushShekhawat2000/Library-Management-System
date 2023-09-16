@@ -12,6 +12,7 @@ import java.util.Date;
 @AllArgsConstructor
 @Setter
 @Getter
+@Builder
 public class LibraryCardResponse {
 
     String cardNo;

@@ -12,6 +12,7 @@ import lombok.experimental.FieldDefaults;
 @Setter
 @Entity
 @Table(name = "student_info")
+@Builder
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
