@@ -5,6 +5,9 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @AllArgsConstructor
@@ -17,18 +20,23 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
-    String tittle;
+    String title;
 
-    int noOfPages;
+    String noOfPages;
 
     @Enumerated(EnumType.STRING)
     Genre genre;
 
     double cost;
 
+    boolean issued;
+
     @ManyToOne
     @JoinColumn
     Author author;
+
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
+    List<Transaction> transections = new ArrayList<>();
 
 
 

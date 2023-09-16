@@ -2,6 +2,9 @@ package com.example.LibraryManagementSystem.service;
 
 import com.example.LibraryManagementSystem.Enum.CardStatus;
 import com.example.LibraryManagementSystem.Enum.Gender;
+import com.example.LibraryManagementSystem.dto.requestDTO.StudentRequest;
+import com.example.LibraryManagementSystem.dto.responseDTO.LibraryCardResponse;
+import com.example.LibraryManagementSystem.dto.responseDTO.StudentResponse;
 import com.example.LibraryManagementSystem.model.LibraryCard;
 import com.example.LibraryManagementSystem.repository.StudentRepository;
 import com.example.LibraryManagementSystem.model.Student;
@@ -22,8 +25,17 @@ public class StudentService {
 
 
 
-    public String addStudent(Student student) {
+    public StudentResponse addStudent(StudentRequest studentRequest) {
 
+        // convert request dto to model
+
+        Student student = new Student();
+        student.setName(studentRequest.getName());
+        student.setAge(studentRequest.getAge());
+        student.setGender(studentRequest.getGender());
+        student.setEmail(studentRequest.getEmail());
+
+        // give a library card
         LibraryCard libraryCard = new LibraryCard();
         libraryCard.setCardNo(String.valueOf(UUID.randomUUID()));
         libraryCard.setCardStatus(CardStatus.ACTIVE);
@@ -35,8 +47,20 @@ public class StudentService {
 
         Student savedStudent = studentRepository.save(student);
 
-        return "Student saved susscessfully";
+       // saved model to response dto
 
+        StudentResponse studentResponse = new StudentResponse();
+        studentResponse.setName(savedStudent.getName());
+        studentResponse.setEmail(savedStudent.getEmail());
+        studentResponse.setMessage("You have been registered");
+
+        LibraryCardResponse cardResponse = new LibraryCardResponse();
+        cardResponse.setCardNo(savedStudent.getLibraryCard().getCardNo());
+        cardResponse.setIssueDate(savedStudent.getLibraryCard().getIssueDate());
+        cardResponse.setCardStatus(savedStudent.getLibraryCard().getCardStatus());
+        studentResponse.setLibraryCardResponse(cardResponse);
+
+        return studentResponse;
     }
 
     public Student getStudent(int regNo) {
