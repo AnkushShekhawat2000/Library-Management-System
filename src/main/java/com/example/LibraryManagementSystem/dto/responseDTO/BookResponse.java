@@ -1,6 +1,7 @@
 package com.example.LibraryManagementSystem.dto.responseDTO;
 
 import com.example.LibraryManagementSystem.Enum.Genre;
+import com.example.LibraryManagementSystem.model.Author;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 

@@ -1,4 +1,4 @@
-package com.example.LibraryManagementSystem.service;
+package com.example.LibraryManagementSystem.service.impl;
 
 import com.example.LibraryManagementSystem.Enum.CardStatus;
 import com.example.LibraryManagementSystem.Enum.Gender;
@@ -47,12 +47,12 @@ public class StudentService {
 
     }
 
-    public Student getStudent(int regNo) {
+    public StudentResponse getStudent(int regNo) {
 
         Optional<Student> studentOptionl = studentRepository.findById(regNo);
         if (studentOptionl.isPresent())
         {
-            return studentOptionl.get();
+            return StudentTransformer.StudentToStudentResponse(studentOptionl.get());
         }
          return null;
     }

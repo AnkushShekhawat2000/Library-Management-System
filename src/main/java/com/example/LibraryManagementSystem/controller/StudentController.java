@@ -2,7 +2,7 @@ package com.example.LibraryManagementSystem.controller;
 
 import com.example.LibraryManagementSystem.dto.requestDTO.StudentRequest;
 import com.example.LibraryManagementSystem.dto.responseDTO.StudentResponse;
-import com.example.LibraryManagementSystem.service.StudentService;
+import com.example.LibraryManagementSystem.service.impl.StudentService;
 import com.example.LibraryManagementSystem.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,11 +31,11 @@ public class StudentController {
     @GetMapping("/get")
     public ResponseEntity getStudent(@RequestParam("id") int regNo)
     {
-        Student student = studentService.getStudent(regNo);
+        StudentResponse studentResponse = studentService.getStudent(regNo);
 
-        if(student != null)
+        if(studentResponse != null)
         {
-            return new ResponseEntity(student,HttpStatus.FOUND);
+            return new ResponseEntity(studentResponse,HttpStatus.FOUND);
         }
 
         return new ResponseEntity("Invalid id!!",HttpStatus.BAD_REQUEST);

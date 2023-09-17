@@ -36,7 +36,7 @@ public class Book {
     Author author;
 
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
-    List<Transaction> transections = new ArrayList<>();
+    List<Transaction> transactions = new ArrayList<>();
 
 
 
