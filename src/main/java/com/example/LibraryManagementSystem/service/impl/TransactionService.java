@@ -34,7 +34,8 @@ public class TransactionService {
     JavaMailSender javaMailSender;
 
 
-    public IssueBookResponse issueBook(int bookId, int studentId) {
+    public IssueBookResponse issueBook(int bookId, int studentId)
+    {
         Optional<Student> studentOptional = studentRepository.findById(studentId);
          if(studentOptional.isEmpty())
          {
@@ -44,7 +45,7 @@ public class TransactionService {
          Optional<Book> optionalBook = bookRepository.findById(bookId);
          if(optionalBook.isEmpty())
          {
-            throw new BookNotAvailableException("Invalid biik id");
+            throw new BookNotAvailableException("Invalid book id");
          }
 
          Book book = optionalBook.get();
